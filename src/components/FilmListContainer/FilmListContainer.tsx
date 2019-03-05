@@ -4,6 +4,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 import { AllFilmQuery } from './__generated__/allFilmQuery'
+import { StatsContainer } from '../StatsContainer'
 
 const allFilmQuery = gql`
   query AllFilmQuery {
@@ -38,13 +39,17 @@ export function FilmListContainer() {
           }
 
           return (
-            <ul>
-              {data.allFilms.map((film) => (
-                <li key={film.id}>
-                  {film.title}
-                </li>
-              ))}
-            </ul>
+            <div>
+              <StatsContainer />
+
+              <ul>
+                {data.allFilms.map((film) => (
+                  <li key={film.id}>
+                    {film.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )
         }}
       </Query>

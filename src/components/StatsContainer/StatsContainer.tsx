@@ -9,7 +9,6 @@ const statsQuery = gql`
   query StatsQuery {
     allFilms(orderBy: releaseDate_DESC) {
       id
-      title
     }
   }
 `
