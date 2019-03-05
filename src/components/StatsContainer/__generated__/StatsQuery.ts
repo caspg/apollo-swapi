@@ -9,10 +9,6 @@
 export interface StatsQuery_allFilms {
   __typename: "Film";
   id: string;
-  /**
-   * The title of this film
-   */
-  title: string;
 }
 
 export interface StatsQuery {

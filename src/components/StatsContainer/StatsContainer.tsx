@@ -15,7 +15,7 @@ const statsQuery = gql`
 
 export function StatsContainer() {
   return (
-    <div style={{ border: '1px solid orange' }}>
+    <div style={{ border: '1px solid orange', margin: 10 }}>
       <Query<StatsQuery>
         query={statsQuery}
       >
