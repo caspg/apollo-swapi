@@ -1,13 +1,22 @@
-import React, { Component } from 'react'
+import * as React from 'react'
 
-class App extends Component {
-  render() {
-    return (
+import { ApolloProvider } from 'react-apollo'
+
+import { createApolloClient } from './config/createApolloClient'
+import { FilmListContainer } from './components/FilmListContainer'
+
+const apolloClient = createApolloClient()
+
+function App() {
+  return (
+    <ApolloProvider client={apolloClient}>
       <div>
-        Hello World
+        Hello World!
       </div>
-    )
-  }
+
+      <FilmListContainer />
+    </ApolloProvider>
+  )
 }
 
 export default App
