@@ -7,7 +7,7 @@ import { AllFilmQuery } from './__generated__/allFilmQuery'
 
 const allFilmQuery = gql`
   query AllFilmQuery {
-    allFilms {
+    allFilms(orderBy: releaseDate_DESC) {
       id
       title
     }
@@ -16,36 +16,38 @@ const allFilmQuery = gql`
 
 export function FilmListContainer() {
   return (
-    <Query<AllFilmQuery>
-      query={allFilmQuery}
-    >
-      {({ loading, data, error }) => {
-        console.log('loading: ', loading)
-        console.log('data: ', data)
-        console.log('error: ', error)
+    <div style={{ border: '1px solid blue' }}>
+      <Query<AllFilmQuery>
+        query={allFilmQuery}
+      >
+        {({ loading, data, error }) => {
+          console.log('loading: ', loading)
+          console.log('data: ', data)
+          console.log('error: ', error)
 
-        if (loading) {
+          if (loading) {
+            return (
+              <div>Loading ...</div>
+            )
+          }
+
+          if (!data) {
+            return (
+              <p>No data</p>
+            )
+          }
+
           return (
-            <div>Loading ...</div>
+            <ul>
+              {data.allFilms.map((film) => (
+                <li key={film.id}>
+                  {film.title}
+                </li>
+              ))}
+            </ul>
           )
-        }
-
-        if (!data) {
-          return (
-            <p>No data</p>
-          )
-        }
-
-        return (
-          <ul>
-            {data.allFilms.map((film) => (
-              <li key={film.id}>
-                {film.title}
-              </li>
-            ))}
-          </ul>
-        )
-      }}
-    </Query>
+        }}
+      </Query>
+    </div>
   )
 }
